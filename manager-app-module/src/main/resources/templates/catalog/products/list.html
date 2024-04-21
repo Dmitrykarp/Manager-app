@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список товаров &ndash; Букинг</title>
+</head>
+<body>
+
+<a data-th-href="@{/catalog/products/create}"> Создать товар</a><br><br>
+<form method="post" data-th-action="@{/catalog/products/create_list}">
+    <button type="submit">Создать лист</button>
+</form><br>
+<form method="post" data-th-action="@{/catalog/products/delete_list}">
+    <button type="submit">Очистить лист</button>
+</form><br>
+
+<h1> Список товаров</h1>
+<form method="get" data-th-action="@{/catalog/products/list}">
+    <label>Фильтр:
+        <input type="text" name="filter" data-th-value="${filter}">
+        <button type="submit">Поиск</button>
+    </label>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Товар</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="product : ${products}">
+        <td data-th-text="${product.id}"></td>
+        <td>
+            <a data-th-href="@{/catalog/products/{productId}(productId=${product.id})}"
+               data-th-text="${product.title}"></a>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+</body>
+</html>
