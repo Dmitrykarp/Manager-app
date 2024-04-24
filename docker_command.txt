@@ -4,3 +4,6 @@ ASSWORD=manager postgres:16
 
 --CatalogService:
 docker run --name catalog-db -p 5432:5432 -e POSTGRES_USER=catalog -e POSTGRES_PASSWORD=catalog -e POSTGRES_DB=catalog postgres:16
+
+--KEYCLOACK
+docker run --name manager-keycloak -p 8086:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin -v ./config/keycloak/import:/opt/keycloak/data/import quay.io/keycloak/keycloak:23.0.4 start-dev --import-realm

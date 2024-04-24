@@ -5,11 +5,13 @@ import com.dmitrykarp.managerapp.client.ProductsRestClient;
 import com.dmitrykarp.managerapp.controller.payload.NewProductPayload;
 import com.dmitrykarp.managerapp.entity.Product;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -21,7 +23,8 @@ public class ProductsController {
     private final ProductsRestClient productsRestClient;
 
     @GetMapping("list")
-    public String getProductsList(Model model, @RequestParam(name = "filter", required = false) String filter) {
+    public String getProductsList(Model model,
+                                  @RequestParam(name = "filter", required = false) String filter) {
         model.addAttribute("products", this.productsRestClient.findAllProducts(filter));
         model.addAttribute("filter", filter);
         return "catalog/products/list";
