@@ -11,9 +11,10 @@ import org.springframework.web.client.RestClient;
 public class ClientBeans {
 
     @Bean
-    public RestClientProductsRestClientImpl productsRestClient(@Value("${managerapp.services.catalog.uri:http://localhost:8084}") String catalogBaseUri,
-                                                               @Value("${managerapp.services.catalog.username:}") String catalogUsername,
-                                                               @Value("${managerapp.services.catalog.password:}") String catalogPassword){
+    public RestClientProductsRestClientImpl productsRestClient(
+            @Value("${managerapp.services.catalog.url:http://localhost:8084}") String catalogBaseUri,
+            @Value("${managerapp.services.catalog.username:}") String catalogUsername,
+            @Value("${managerapp.services.catalog.password:}") String catalogPassword){
         return new RestClientProductsRestClientImpl(RestClient.builder()
                 .baseUrl(catalogBaseUri)
                 .requestInterceptor(new BasicAuthenticationInterceptor(catalogUsername, catalogPassword))

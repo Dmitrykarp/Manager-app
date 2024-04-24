@@ -1,0 +1,6 @@
+--ManagerAPP:
+docker run --name manager-db -p 5433:5432 -e POSTGRES_DB=manager -e POSTGRES_USER=manager -e POSTGRES_P
+ASSWORD=manager postgres:16
+
+--CatalogService:
+docker run --name catalog-db -p 5432:5432 -e POSTGRES_USER=catalog -e POSTGRES_PASSWORD=catalog -e POSTGRES_DB=catalog postgres:16
